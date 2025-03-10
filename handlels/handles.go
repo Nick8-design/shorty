@@ -2,7 +2,7 @@ package handlels
 
 import (
 	"math/rand"
-	"os"
+	//"os"
 	"shorty/db"
 	"shorty/models"
 
@@ -45,13 +45,13 @@ func ShortenURL(c *fiber.Ctx) error {
         shortCode := generateShortCode(6) 
         longShort.LongUrl=request.URL
 
-        data:=os.Getenv("Durl")
-        if data==""{
-            return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-                "error": "Base URL not found",
-            })
-        }
-    
+        // data:=os.Getenv("Durl")
+        // if data==""{
+        //     return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+        //         "error": "Base URL not found",
+        //     })
+        // }
+    data:="https://shorty-xdb4.onrender.com/"
         
     
         longShort.ShortUrl = data + shortCode
@@ -79,13 +79,14 @@ func ShortenURL(c *fiber.Ctx) error {
 
 
 func RedirectUrl(c *fiber.Ctx)error{
-    data:=os.Getenv("Durl")
-	if data==""{
-        return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-            "error": "Base URL not found",
-        })
-    }
+    // data:=os.Getenv("Durl")
+	// if data==""{
+    //     return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+    //         "error": "Base URL not found",
+    //     })
+    // }
 
+       data:="https://shorty-xdb4.onrender.com/"
 
     var shortCode =data+c.Params("short")
 
