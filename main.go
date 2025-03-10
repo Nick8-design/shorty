@@ -15,7 +15,7 @@ func init(){
 		log.Fatal("Error loading env")
 	}
 go	db.ConnectDb()
-go	db.ConnectRedis()
+//go	db.ConnectRedis()
 }
 
 func main() {

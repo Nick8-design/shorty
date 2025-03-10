@@ -58,12 +58,12 @@ func ShortenURL(c *fiber.Ctx) error {
     
     
         db.Db.Create(&longShort)
-        err := db.RedisClient.Set(db.Ctx, longShort.ShortUrl,longShort.LongUrl , 0).Err()
-        if err != nil {
-            return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-                "error": "Failed to cache in Redis",
-            })
-        }
+        // err := db.RedisClient.Set(db.Ctx, longShort.ShortUrl,longShort.LongUrl , 0).Err()
+        // if err != nil {
+        //     return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+        //         "error": "Failed to cache in Redis",
+        //     })
+        // }
 
         return c.JSON(longShort.ShortUrl)
 
@@ -89,10 +89,10 @@ func RedirectUrl(c *fiber.Ctx)error{
 
     var shortCode =data+c.Params("short")
 
-    longURL, err := db.RedisClient.Get(db.Ctx, shortCode).Result()
-    if err == nil {
-        return c.Redirect(longURL, fiber.StatusMovedPermanently)
-    }
+    // longURL, err := db.RedisClient.Get(db.Ctx, shortCode).Result()
+    // if err == nil {
+    //     return c.Redirect(longURL, fiber.StatusMovedPermanently)
+    // }
 
     
 
@@ -104,7 +104,7 @@ func RedirectUrl(c *fiber.Ctx)error{
   }
 
     // 🔹 Store in Redis for future requests
-    _ = db.RedisClient.Set(db.Ctx, shortCode, longShort.LongUrl, 0).Err()
+    // _ = db.RedisClient.Set(db.Ctx, shortCode, longShort.LongUrl, 0).Err()
 
   return c.Redirect(longShort.LongUrl,fiber.StatusMovedPermanently)
 
