@@ -65,11 +65,13 @@ func ShortenURL(c *fiber.Ctx) error {
         //     })
         // }
 
-        return c.JSON(longShort.ShortUrl)
+        return c.JSON(fiber.Map{
+          "short_url":longShort.ShortUrl})
 
 
       } else{
-        return c.JSON(longShort.ShortUrl)
+        return c.JSON(fiber.Map{
+          "short_url":longShort.ShortUrl})
 
       }
 

@@ -1,0 +1,4 @@
+curl -X POST https://shorty-xdb4.onrender.com/shorten \
+     -H "Content-Type: application/json" \
+     -d '{"url": "https://github.com/Nick8-design/shorty"}'
+
